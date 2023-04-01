@@ -1,0 +1,38 @@
+pipeline:
+  name: angular-app
+  identifier: angularapp
+  projectIdentifier: Default_Project_1662995130999
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1663087133511
+        repoName: " angular-realworld-example-app"
+        build: <+input>
+  stages:
+    - stage:
+        name: image_build
+        identifier: image_build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_angular
+                  identifier: BuildAndPushDockerRegistry_angular
+                  spec:
+                    connectorRef: vampireking
+                    repo: " angular-realworld"
+                    tags:
+                      - latest
+                    dockerfile: Dockerfile
