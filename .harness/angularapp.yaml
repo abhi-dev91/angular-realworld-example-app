@@ -27,6 +27,17 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: GitClone
+                  name: GitClone_1
+                  identifier: GitClone_1
+                  spec:
+                    connectorRef: account.Github_OAuth_1663087133511
+                    repoName: " angular-realworld-example-app"
+                    build:
+                      type: branch
+                      spec:
+                        branch: master
+              - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_angular
                   identifier: BuildAndPushDockerRegistry_angular
